@@ -43,19 +43,21 @@ const RealTimeChart = ({ className, ...rest }) => {
   ]);
 
   const getData = () => {
-        setData((prevData) => {
-          const newData = [...prevData];
-          const random = getRandomInt(100, 200);
-          newData.shift();
-          newData.push(random);
+    setTimeout(() => {
+      setData((prevData) => {
+        const newData = [...prevData];
+        const random = getRandomInt(100, 200);
+        newData.shift();
+        newData.push(random);
 
-          return newData;
-        });
+        return newData;
+      });
+    }, 1500);
   };
 
   useEffect(() => {
-    setInterval(() => getData(), 1500);
-  }, []);
+     getData()
+  }, [data]);
 
   const labels = data.map((value, i) => i);
 
