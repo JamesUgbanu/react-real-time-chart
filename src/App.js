@@ -7,13 +7,10 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import clsx from 'clsx';
 import Chart from './Chart';
-import logo from './logo.svg'
+import logo from './logo.svg';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-  },
   current: {
     marginTop: theme.spacing(0.5),
     marginRight: theme.spacing(0.5)
@@ -42,6 +39,10 @@ const RealTimeChart = ({ className, ...rest }) => {
     183
   ]);
 
+  useEffect(() => {
+    getData()
+ }, [data]);
+
   const getData = () => {
     setTimeout(() => {
       setData((prevData) => {
@@ -54,10 +55,6 @@ const RealTimeChart = ({ className, ...rest }) => {
       });
     }, 1500);
   };
-
-  useEffect(() => {
-     getData()
-  }, [data]);
 
   const labels = data.map((value, i) => i);
 
@@ -80,10 +77,7 @@ const RealTimeChart = ({ className, ...rest }) => {
           display="flex"
           justifyContent="center"
         >
-          <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+          <Card>
       <CardHeader
         action={(
           <Typography
